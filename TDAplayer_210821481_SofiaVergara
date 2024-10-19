@@ -3,10 +3,7 @@
 ; Descripción: Crea un nuevo jugador y lo agrega a la lista de jugadores.
 ; Dom: id (int) X name (string) X color (string) X wins (int) X losses (int) X draws (int) X remaining-pieces (int).
 ; Rec: El jugador creado (player).
-; Tipo recursión: No hay.
-
-; Define la estructura "player".
-(define-struct num_player (id name color wins losses draws remaining-pieces))
+; Tipo recursión: No aplica.
 
 ; Función para crear un jugador con validación de tipos.
 (define (player id name color wins losses draws remaining-pieces)
@@ -18,4 +15,4 @@
     [(not (integer? losses)) (error "losses debe ser un número entero")]
     [(not (integer? draws)) (error "draws debe ser un número entero")]
     [(not (integer? remaining-pieces)) (error "remaining-pieces debe ser un número entero")]
-    [else (make-num_player id name color wins losses draws remaining-pieces)]))
+    [else (list id name color wins losses draws remaining-pieces)]))
