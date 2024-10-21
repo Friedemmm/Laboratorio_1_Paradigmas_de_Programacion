@@ -5,8 +5,19 @@
 ; Rec: El jugador creado (player).
 ; Tipo recursión: No aplica.
 
+(provide (all-defined-out)
+         
+; Generar los selectores propios.
+(define first-element first) ; Primer elemento de una lista.
+(define second-element second) ; Segundo elemento de una lista.
+(define third-element third) ; Tercer elemento de una lista.
+(define fourth-element fourth) ; Cuarto elemento de una lista.
+(define fifth-element fifth) ; Quinto elemento de una lista.
+(define sixth-element sixth) ; Sexto elemento de una lista.
+(define seventh-element seventh) ; Obtiene el ultimo elemento de una lista.
+
 ; Función para crear un jugador con validación de tipos.
-(define (player id name color wins losses draws remaining-pieces)
+(define (player id name color wins losses draws remaining-pieces) ; (define ("FUNCION" "Variables...")).
   (cond
     [(not (integer? id)) (error "id debe ser un número entero")]
     [(not (string? name)) (error "name debe ser una cadena de caracteres")]
@@ -15,4 +26,6 @@
     [(not (integer? losses)) (error "losses debe ser un número entero")]
     [(not (integer? draws)) (error "draws debe ser un número entero")]
     [(not (integer? remaining-pieces)) (error "remaining-pieces debe ser un número entero")]
-    [else (list id name color wins losses draws remaining-pieces)]))
+    [else (list id name color wins losses draws remaining-pieces)] ; ("Lista" "Variables...").
+    )
+  )
