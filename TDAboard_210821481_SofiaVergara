@@ -1,0 +1,22 @@
+; Descripción: Crea un tablero de 7 columnas y 6 filas lleno de ceros, donde se hacen 6 listas con 7 elementos.
+; Dom: No recibe parámetros de entrada.
+; Rec: Retorna una lista de listas con pares que representa el tablero vacío.
+; Tipo recursión: No aplica
+
+; Función para crear el tablero Conecta 4.
+(define (board)
+  ; Función auxiliar para crear una columna.
+  (define (make-fila)
+    (make-list 7 0) ; (make-list "Número de elementos" "Elementos dentro").
+  
+    )
+  
+  ; Crear 6 listas con 7 elementos que serian las columnas.
+  (list (make-fila)
+        (make-fila)
+        (make-fila)
+        (make-fila)
+        (make-fila)
+        (make-fila)
+        )
+  )
