@@ -1,0 +1,14 @@
+; Descripción: Verifica si hay al menos una celda vacía en el tablero.
+; Dom: Board (board).
+; Rec: Boolean (#t si se puede jugar, #f si no).
+; Tipo recursión: No aplica
+
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
+; Función para revisar si se puede seguir jugando, en este caso busca un espacio vacio, o sea 0.
+(define (board-can-play? board)
+  (if (member 0 (first-element board)) ; Uso IF porque member cuando encuentra el elemento entrega la cola.
+      #t ; Si encuentra un 0. 
+      #f ; Si no encuentra un 0.
+      )
+  )
