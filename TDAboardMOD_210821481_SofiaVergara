@@ -1,0 +1,79 @@
+; Descripción: Verifica en la columna que fila esta vacia en ese espacio.
+; Dom: board (board) X column (int) X piece (piece). 
+; Rec: board.
+; Tipo recursión: No aplica
+
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
+; Función para saber hasta donde llega la pieza en la columna y verificar si puede poner en esa columna.
+(define (board-set-play-piece board columna piece)
+  (if (= (list-ref (sixth-element board) columna) 0) ; Si sexta fila tiene 0 en esa columna.
+      (list (first-element board)  ; Se deja igual la fila 1
+            (second-element board)  ; Se deja igual la fila 2
+            (third-element board)  ; Se deja igual la fila 3
+            (fourth-element board)  ; Se deja igual la fila 4
+            (fifth-element board)  ; Se deja igual la fila 5
+            ; Cambia la fila 6; la última
+            ;.........Código....
+            )
+      
+      (if (= (list-ref (fifth-element board) columna) 0) ; Si quinta fila tiene 0 en esa columna. 
+          (list (first-element board)  ; Se deja igual la fila 1
+                (second-element board)  ; Se deja igual la fila 2
+                (third-element board)  ; Se deja igual la fila 3
+                (fourth-element board)  ; Se deja igual la fila 4
+                (sixth-element board)  ; Se deja igual la fila 6
+                ; Cambia la fila 5
+                ;.........Código....
+                )
+
+          (if (= (list-ref (fourth-element board) columna) 0) ; Si cuarta fila tiene 0 en esa columna. 
+              (list (first-element board)  ; Se deja igual la fila 1
+                    (second-element board)  ; Se deja igual la fila 2
+                    (third-element board)  ; Se deja igual la fila 3
+                    (fifth-element board)  ; Se deja igual la fila 5
+                    (sixth-element board)  ; Se deja igual la fila 6
+                    ; Cambia la fila 4
+                    ;.........Código....
+                    )
+
+              (if (= (list-ref (third-element board) columna) 0) ; Si tercera fila tiene 0 en esa columna.
+                  (list (first-element board)  ; Se deja igual la fila 1
+                        (second-element board)  ; Se deja igual la fila 2
+                        (fourth-element board)  ; Se deja igual la fila 4
+                        (fifth-element board)  ; Se deja igual la fila 5
+                        (sixth-element board)  ; Se deja igual la fila 6
+                        ; Cambia la fila 3
+                        ;.........Código....
+                        )
+                        
+                  (if (= (list-ref (second-element board) columna) 0) ; Si segunda fila tiene 0 en esa columna. 
+                      (list (first-element board)  ; Se deja igual la fila 1
+                            (third-element board)  ; Se deja igual la fila 3
+                            (fourth-element board)  ; Se deja igual la fila 4
+                            (fifth-element board)  ; Se deja igual la fila 5
+                            (sixth-element board)  ; Se deja igual la fila 6
+                            ; Cambia la fila 2; la última
+                            ;.........Código....
+                            )
+                            
+                      (if (= (list-ref (first-element board) columna) 0) ; Si primera fila tiene 0 en esa columna. 
+                          (list (second-element board)  ; Se deja igual la fila 2
+                                (third-element board)  ; Se deja igual la fila 3
+                                (fourth-element board)  ; Se deja igual la fila 4
+                                (fifth-element board)  ; Se deja igual la fila 5
+                                (sixth-element board)  ; Se deja igual la fila 6
+                                ; Cambia la fila 1; la última
+                                ;.........Código....
+                                )
+
+                          (error "No hay espacio en la columna")
+                          )
+                      )
+                  )
+              )
+          )
+      )
+  )
+                         
+
