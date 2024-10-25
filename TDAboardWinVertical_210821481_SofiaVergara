@@ -3,13 +3,9 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
 ; Tipo recursión: Natural.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
-
-(define(board-check-vertical-win board)
-  
-  (check-columna board 0); Se empieza desde la columna 0 en la siguiente función.
-  
-  ; Función para revisar si una de las 7 columnas se puede ganar.
+; Función para verificar si se gana en vertical, o sea, en una columna, al menos 4 piezas.
+(define (board-check-vertical-win board)
+  ; Función auxiliar para revisar si una de las 7 columnas se puede ganar.
   (define (check-columna board contador)
     (if (= contador 7)
         0 ; Aún no se gana vertical.
@@ -19,6 +15,7 @@
             )
         )
     )
+  ; Función auxiliar para obtener y analizar una columna específica.
   (define (columna-contador board contador)
     (win-or-loss
      (list (list-ref (first-element board) contador)
@@ -26,19 +23,28 @@
            (list-ref (third-element board) contador)
            (list-ref (fourth-element board) contador)
            (list-ref (fifth-element board) contador)
-           (list-ref (sixth-element board) contador)
-           )
+           (list-ref (sixth-element board) contador))
      )
     )
+  
+  ; Función para verificar si hay victoria en una columna.
   (define (win-or-loss columna)
     (if (< (length columna) 4)
-      0  ; Si tiene menos de 4 piezas, no hay para victoria vertical.
-      (if (and (= (list-ref columna 0) (list-ref columna 1))
-               (= (list-ref columna 1) (list-ref columna 2))
-               (= (list-ref columna 2) (list-ref columna 3))
-               (not (= (list-ref columna 0) 0)))  ; Ver si son el mismo tipo de ficha.
-          (list-ref columna 0)  ; Retorna el que ganó, 1 o 2.
-          0) ; No hay ganador, retorna 0.
-      )
+        0  ; Si tiene menos de 4 piezas, no hay victoria vertical.
+        (if (and (= (list-ref columna 0) (list-ref columna 1))
+                 (= (list-ref columna 1) (list-ref columna 2))
+                 (= (list-ref columna 2) (list-ref columna 3))
+                 (not (= (list-ref columna 0) 0)))  ; Ver si son el mismo tipo de ficha.
+            (list-ref columna 0)  ; Retorna el que ganó, 1 o 2.
+            0 ; No hay ganador, retorna 0.
+            )
+        )
     )
+  
+  ; Llamada inicial a check-columna
+  (check-columna board 0) ; Se empieza desde la columna 0
   )
+
+  
+
+
