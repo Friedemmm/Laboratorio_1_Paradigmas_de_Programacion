@@ -8,66 +8,192 @@
 ; Función para saber hasta donde llega la pieza en la columna y verificar si puede poner en esa columna.
 (define (board-set-play-piece board columna piece)
   (if (= (list-ref (sixth-element board) columna) 0) ; Si sexta fila tiene 0 en esa columna.
-      (list (first-element board)  ; Se deja igual la fila 1
-            (second-element board)  ; Se deja igual la fila 2
-            (third-element board)  ; Se deja igual la fila 3
-            (fourth-element board)  ; Se deja igual la fila 4
-            (fifth-element board)  ; Se deja igual la fila 5
-            ; Cambia la fila 6; la última
-            ;.........Código....
+      (list (first-element board) ; Se deja igual la fila 1.
+            (second-element board) ; Se deja igual la fila 2.
+            (third-element board) ; Se deja igual la fila 3.
+            (fourth-element board) ; Se deja igual la fila 4.
+            (fifth-element board) ; Se deja igual la fila 5.
+            ; Crea nueva lista para fila 6 reemplazando el 0 con piece en la columna.
+            (list (if (= columna 0)
+                      piece (list-ref (sixth-element board) 0)
+                      )
+                  (if (= columna 1)
+                      piece (list-ref (sixth-element board) 1)
+                      )
+                  (if (= columna 2)
+                      piece (list-ref (sixth-element board) 2)
+                      )
+                  (if (= columna 3)
+                      piece (list-ref (sixth-element board) 3)
+                      )
+                  (if (= columna 4)
+                      piece (list-ref (sixth-element board) 4)
+                      )
+                  (if (= columna 5)
+                      piece (list-ref (sixth-element board) 5)
+                      )
+                  (if (= columna 6)
+                      piece (list-ref (sixth-element board) 6)
+                       )
+                  )
             )
       
-      (if (= (list-ref (fifth-element board) columna) 0) ; Si quinta fila tiene 0 en esa columna. 
-          (list (first-element board)  ; Se deja igual la fila 1
-                (second-element board)  ; Se deja igual la fila 2
-                (third-element board)  ; Se deja igual la fila 3
-                (fourth-element board)  ; Se deja igual la fila 4
-                (sixth-element board)  ; Se deja igual la fila 6
-                ; Cambia la fila 5
-                ;.........Código....
+      (if (= (list-ref (fifth-element board) columna) 0) ; Si quinta fila tiene 0 en esa columna.
+          (list (first-element board) ; Se deja igual la fila 1.
+                (second-element board) ; Se deja igual la fila 2.
+                (third-element board) ; Se deja igual la fila 3.
+                (fourth-element board) ; Se deja igual la fila 4.
+                ; Crea nueva lista para fila 5 reemplazando el 0 con piece en la columna.
+                (list (if (= columna 0)
+                          piece (list-ref (fifth-element board) 0)
+                          )
+                      (if (= columna 1)
+                          piece (list-ref (fifth-element board) 1)
+                          )
+                      (if (= columna 2)
+                          piece (list-ref (fifth-element board) 2)
+                          )
+                      (if (= columna 3)
+                          piece (list-ref (fifth-element board) 3)
+                          )
+                      (if (= columna 4)
+                          piece (list-ref (fifth-element board) 4)
+                          )
+                      (if (= columna 5)
+                          piece (list-ref (fifth-element board) 5)
+                          )
+                      (if (= columna 6)
+                          piece (list-ref (fifth-element board) 6)
+                          )
+                      )
+                (sixth-element board) ; Se deja igual la fila 6.
                 )
-
-          (if (= (list-ref (fourth-element board) columna) 0) ; Si cuarta fila tiene 0 en esa columna. 
-              (list (first-element board)  ; Se deja igual la fila 1
-                    (second-element board)  ; Se deja igual la fila 2
-                    (third-element board)  ; Se deja igual la fila 3
-                    (fifth-element board)  ; Se deja igual la fila 5
-                    (sixth-element board)  ; Se deja igual la fila 6
-                    ; Cambia la fila 4
-                    ;.........Código....
-                    )
+          
+          (if (= (list-ref (fourth-element board) columna) 0) ; Si cuarta fila tiene 0 en esa columna.
+              (list (first-element board)   ; Se deja igual la fila 1.
+                    (second-element board)   ; Se deja igual la fila 2.
+                    (third-element board)    ; Se deja igual la fila 3.
+                    ; Crea nueva lista para fila 4 reemplazando el 0 con piece en la columna.
+                    (list (if (= columna 0) ; Si esta en esa columna se crea otra lista con el piece en ese elemento.
+                              piece (list-ref (fourth-element board) 0)
+                              )
+                          (if (= columna 1)
+                              piece (list-ref (fourth-element board) 1)
+                              )
+                          (if (= columna 2)
+                              piece (list-ref (fourth-element board) 2)
+                              )
+                          (if (= columna 3)
+                              piece (list-ref (fourth-element board) 3)
+                              )
+                          (if (= columna 4)
+                              piece (list-ref (fourth-element board) 4)
+                              )
+                          (if (= columna 5)
+                              piece (list-ref (fourth-element board) 5)
+                              )
+                          (if (= columna 6)
+                              piece (list-ref (fourth-element board) 6)
+                              )
+                          )
+                    (fifth-element board)    ; Se deja igual la fila 5
+                    (sixth-element board))   ; Se deja igual la fila 6
 
               (if (= (list-ref (third-element board) columna) 0) ; Si tercera fila tiene 0 en esa columna.
-                  (list (first-element board)  ; Se deja igual la fila 1
-                        (second-element board)  ; Se deja igual la fila 2
-                        (fourth-element board)  ; Se deja igual la fila 4
-                        (fifth-element board)  ; Se deja igual la fila 5
-                        (sixth-element board)  ; Se deja igual la fila 6
-                        ; Cambia la fila 3
-                        ;.........Código....
+                  (list (first-element board)  ; Se deja igual la fila 1.
+                        (second-element board)  ; Se deja igual la fila 2.
+                        ; Crea nueva lista para fila 3 reemplazando el 0 con piece en la columna.
+                        (list (if (= columna 0)
+                                  piece (list-ref (third-element board) 0)
+                                  )
+                              (if (= columna 1)
+                                  piece (list-ref (third-element board) 1)
+                                  )
+                              (if (= columna 2)
+                                  piece (list-ref (third-element board) 2)
+                                  )
+                              (if (= columna 3)
+                                  piece (list-ref (third-element board) 3)
+                                  )
+                              (if (= columna 4)
+                                  piece (list-ref (third-element board) 4)
+                                  )
+                              (if (= columna 5)
+                                  piece (list-ref (third-element board) 5)
+                                  )
+                              (if (= columna 6)
+                                  piece (list-ref (third-element board) 6)
+                                  )
+                              )
+                        (fourth-element board)  ; Se deja igual la fila 4.
+                        (fifth-element board)  ; Se deja igual la fila 5.
+                        (sixth-element board)  ; Se deja igual la fila 6.
                         )
                         
                   (if (= (list-ref (second-element board) columna) 0) ; Si segunda fila tiene 0 en esa columna. 
-                      (list (first-element board)  ; Se deja igual la fila 1
-                            (third-element board)  ; Se deja igual la fila 3
-                            (fourth-element board)  ; Se deja igual la fila 4
-                            (fifth-element board)  ; Se deja igual la fila 5
-                            (sixth-element board)  ; Se deja igual la fila 6
-                            ; Cambia la fila 2; la última
-                            ;.........Código....
+                      (list (first-element board)  ; Se deja igual la fila 1.
+                            ; Crea nueva lista para fila 2 reemplazando el 0 con piece en la columna.
+                            (list (if (= columna 0)
+                                      piece (list-ref (second-element board) 0)
+                                      )
+                                  (if (= columna 1)
+                                      piece (list-ref (second-element board) 1)
+                                      )
+                                  (if (= columna 2)
+                                      piece (list-ref (second-element board) 2)
+                                      )
+                                  (if (= columna 3)
+                                      piece (list-ref (second-element board) 3)
+                                      )
+                                  (if (= columna 4)
+                                      piece (list-ref (second-element board) 4)
+                                      )
+                                  (if (= columna 5)
+                                      piece (list-ref (second-element board) 5)
+                                      )
+                                  (if (= columna 6)
+                                      piece (list-ref (second-element board) 6)
+                                      )
+                                  )
+                            (third-element board)  ; Se deja igual la fila 3.
+                            (fourth-element board)  ; Se deja igual la fila 4.
+                            (fifth-element board)  ; Se deja igual la fila 5.
+                            (sixth-element board)  ; Se deja igual la fila 6.
                             )
                             
-                      (if (= (list-ref (first-element board) columna) 0) ; Si primera fila tiene 0 en esa columna. 
-                          (list (second-element board)  ; Se deja igual la fila 2
-                                (third-element board)  ; Se deja igual la fila 3
-                                (fourth-element board)  ; Se deja igual la fila 4
-                                (fifth-element board)  ; Se deja igual la fila 5
-                                (sixth-element board)  ; Se deja igual la fila 6
-                                ; Cambia la fila 1; la última
-                                ;.........Código....
+                      (if (= (list-ref (first-element board) columna) 0) ; Si primera fila tiene 0 en esa columna.
+                          ; Crea nueva lista para fila 1 reemplazando el 0 con piece en la columna.
+                          (list (list (if (= columna 0)
+                                          piece (list-ref (first-element board) 0)
+                                          )
+                                      (if (= columna 1)
+                                          piece (list-ref (first-element board) 1)
+                                          )
+                                      (if (= columna 2)
+                                          piece (list-ref (first-element board) 2)
+                                          )
+                                      (if (= columna 3)
+                                          piece (list-ref (first-element board) 3)
+                                          )
+                                      (if (= columna 4)
+                                          piece (list-ref (first-element board) 4)
+                                          )
+                                      (if (= columna 5)
+                                          piece (list-ref (first-element board) 5)
+                                          )
+                                      (if (= columna 6)
+                                          piece (list-ref (first-element board) 6)
+                                          )
+                                      )
+                                (second-element board)  ; Se deja igual la fila 2.
+                                (third-element board)  ; Se deja igual la fila 3.
+                                (fourth-element board)  ; Se deja igual la fila 4.
+                                (fifth-element board)  ; Se deja igual la fila 5.
+                                (sixth-element board)  ; Se deja igual la fila 6.
                                 )
 
                           (error "No hay espacio en la columna")
+                          
                           )
                       )
                   )
@@ -75,5 +201,4 @@
           )
       )
   )
-                         
 
