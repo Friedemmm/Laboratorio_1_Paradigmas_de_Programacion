@@ -1,4 +1,4 @@
-; Descripción: Verificar si en una fila hay 4 piezas juntas del mismo color para ganar.
+; Descripción: Verificar si en una columna hay 4 piezas juntas del mismo color para ganar.
 ; Dom: Board (board).
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
 ; Tipo recursión: Natural.
@@ -41,8 +41,8 @@
         )
     )
   
-  ; Llamada inicial a check-columna
-  (check-columna board 0) ; Se empieza desde la columna 0
+  ; Llamada inicial a check-columna.
+  (check-columna board 0) ; Se empieza desde la columna 0.
   )
 
   
