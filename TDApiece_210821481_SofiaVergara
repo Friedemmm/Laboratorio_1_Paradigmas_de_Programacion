@@ -3,10 +3,12 @@
 ; Rec: La pieza creada (piece).
 ; Tipo recursión: No aplica.
 
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
 ; Función para crear una ficha.
 (define (piece color)
   (if (not (string? color))
       (error "color debe ser una cadena de caracteres")
-      (list color)
+      (crear-lista color)
       )
   )
