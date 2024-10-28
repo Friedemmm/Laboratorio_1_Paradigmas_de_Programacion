@@ -7,7 +7,7 @@
 
 ; Función para revisar si se puede seguir jugando, en este caso busca un espacio vacio, o sea 0.
 (define (board-can-play? board)
-  (if (member 0 (first-element board)) ; Uso IF porque member cuando encuentra el elemento entrega la cola.
+  (if (my-member 0 (first-element board)) ; Uso IF porque member cuando encuentra el elemento entrega la cola.
       #t ; Si encuentra un 0. 
       #f ; Si no encuentra un 0.
       )
