@@ -3,22 +3,29 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
 ; Tipo recursión: Natural.
 
-; Función para revisar la victoria horizontal, o sea, 4 piezas en una fila.
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
+; Función para revisar la victoria en una fila.
 (define (board-check-horizontal-win board)
   ; Función para revisar cada fila y ver si hay win.
   (define (check-fila board contador)
     (if (= contador 6)
-        0 ; Aún no se gana horizontal
-        (if (not (= (fila-contador (list-ref board contador)) 0))
-            (fila-contador (list-ref board contador)) ; Retorna el ganador.
+        0 ; Aún no se gana horizontalmente.
+        (if (not (= (fila-contador board contador) 0))
+            (fila-contador board contador) ; Retorna el ganador.
             (check-fila board (+ contador 1))
             )
         )
     )
+
+  ; Función auxiliar para ver la fila a verificar.
+  (define (fila-contador board contador)
+    (win-or-loss (cierto-element board contador))
+    )
   
   ; Función para ver si hay victoria en la fila.
-  (define (fila-contador fila)
-    (if (< (length fila) 4)
+  (define (win-or-loss fila)
+    (if (< (largo fila) 4)
         0  ; Si tiene menos de 4 piezas, no hay victoria horizontal.
         (check-4-piezas fila 0)
         )
@@ -26,17 +33,26 @@
   
   ; Función para verificar 4 piezas iguales en una fila.
   (define (check-4-piezas fila posicion)
-    (if (> (+ posicion 3) (- (length fila) 1))
+    (if (> (+ posicion 3) (- (largo fila) 1))
         0 ; No hay 4 piezas juntas.
-        (if (and (= (list-ref fila posicion) (list-ref fila (+ posicion 1)))
-                 (= (list-ref fila (+ posicion 1)) (list-ref fila (+ posicion 2)))
-                 (= (list-ref fila (+ posicion 2)) (list-ref fila (+ posicion 3)))
-                 (not (= (list-ref fila posicion) 0)))  ; Verificar que no sean espacios vacíos.
-            (list-ref fila posicion)  ; Retorna el jugador que ganó (1 o 2).
-            (check-4-piezas fila (+ posicion 1)))
+        (if (and (list? (cierto-element fila posicion))
+                 (list? (cierto-element fila (+ posicion 1)))
+                 (list? (cierto-element fila (+ posicion 2)))
+                 (list? (cierto-element fila (+ posicion 3)))
+                 (equal? (cierto-element fila posicion) (cierto-element fila (+ posicion 1)))
+                 (equal? (cierto-element fila posicion) (cierto-element fila (+ posicion 2)))
+                 (equal? (cierto-element fila posicion) (cierto-element fila (+ posicion 3)))
+                 (not (equal? (cierto-element fila posicion) 0))) ; Que no sea 0.
+            (if (equal? (first-element (cierto-element fila posicion)) "red")
+                1 ; Retorna 1 si es rojo, 2 si es amarillo.
+                2
+                )
+            (check-4-piezas fila (+ posicion 1))
+            )
+        
         )
-    )  
+    )
   
-  ; Llamada inicial a check-fila.
+  ; Iniciamos chequeando desde la fila 0.
   (check-fila board 0)
   )
