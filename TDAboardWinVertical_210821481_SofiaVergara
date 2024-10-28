@@ -3,48 +3,58 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
 ; Tipo recursión: Natural.
 
-; Función para verificar si se gana en vertical, o sea, en una columna, al menos 4 piezas.
-(define (board-check-vertical-win board)
-  ; Función auxiliar para revisar si una de las 7 columnas se puede ganar.
-  (define (check-columna board contador)
-    (if (= contador 7)
-        0 ; Aún no se gana vertical.
-        (if (not (= (columna-contador board contador) 0))
-            (columna-contador board contador) ; Retorna el ganador.
-            (check-columna board (+ contador 1))
-            )
-        )
-    )
-  ; Función auxiliar para obtener y analizar una columna específica.
-  (define (columna-contador board contador)
-    (win-or-loss
-     (list (list-ref (first-element board) contador)
-           (list-ref (second-element board) contador)
-           (list-ref (third-element board) contador)
-           (list-ref (fourth-element board) contador)
-           (list-ref (fifth-element board) contador)
-           (list-ref (sixth-element board) contador))
-     )
-    )
-  
-  ; Función para verificar si hay victoria en una columna.
-  (define (win-or-loss columna)
-    (if (< (length columna) 4)
-        0  ; Si tiene menos de 4 piezas, no hay victoria vertical.
-        (if (and (= (list-ref columna 0) (list-ref columna 1))
-                 (= (list-ref columna 1) (list-ref columna 2))
-                 (= (list-ref columna 2) (list-ref columna 3))
-                 (not (= (list-ref columna 0) 0)))  ; Ver si son el mismo tipo de ficha.
-            (list-ref columna 0)  ; Retorna el que ganó, 1 o 2.
-            0 ; No hay ganador, retorna 0.
-            )
-        )
-    )
-  
-  ; Llamada inicial a check-columna.
-  (check-columna board 0) ; Se empieza desde la columna 0.
-  )
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
 
-  
+; Función para verificar victoria en una columna.
+(define (board-check-vertical-win board)
+  ; Función auxiliar para revisar una columna específica.
+  (define (check-columna board columna)
+    (if (= columna 7)
+        0 ; Si no hay win, retorna 0.
+        (if (= (check-4-piezas board columna 0) 0)
+            (check-columna board (+ columna 1))
+            (check-4-piezas board columna 0) ; Si hay, retornamos el ganador.
+            )
+        )
+    )
+
+  ; Función para ver que hayan 4 fichas juntas.
+  (define (check-4-piezas board columna fila)
+    (if (> (+ fila 3) 5) ; Si no hay espacio para 4 en vertical.
+        0
+        (if (and (list? (cierto-element (cierto-element board fila) columna))
+                 (list? (cierto-element (cierto-element board (+ fila 1)) columna))
+                 (list? (cierto-element (cierto-element board (+ fila 2)) columna))
+                 (list? (cierto-element (cierto-element board (+ fila 3)) columna)))
+            (if (and (equal? (first-element (cierto-element (cierto-element board fila) columna)) 
+                             (first-element (cierto-element (cierto-element board (+ fila 1)) columna))
+                             )
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                             (first-element (cierto-element (cierto-element board (+ fila 2)) columna))
+                             )
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                             (first-element (cierto-element (cierto-element board (+ fila 3)) columna))
+                             )
+                     )
+                (if (equal? (first-element (cierto-element (cierto-element board fila) columna)) "red")
+                    1 ; Retorna 1 si es rojo.
+                    2 ; Retorna 2 si es amarillo.
+                    )
+                (if (< fila 2)
+                    (check-4-piezas board columna (+ fila 1))
+                    0
+                    )
+                )
+            (if (< fila 2)
+                (check-4-piezas board columna (+ fila 1))
+                0
+                )
+            )
+        )
+    )
+
+  ; Iniciamos desde la columna 0.
+  (check-columna board 0)
+  )
 
 
