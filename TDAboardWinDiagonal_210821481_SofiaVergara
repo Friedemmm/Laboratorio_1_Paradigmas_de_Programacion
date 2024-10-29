@@ -1,0 +1,80 @@
+; Descripción: Verificar si en una diagonal hay 4 piezas juntas del mismo color para ganar.
+; Dom: Board (board).
+; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador diagonal).
+; Tipo recursión: Cola.
+
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
+; Función para verificar victoria diagonal
+(define (board-check-diagonal-win board)
+  ; Función principal para revisar diagonales
+  (define (check-diagonales board columna fila direccion)
+    (cond 
+      ; Casos base.
+      [(= columna 4) 0]  ; Llegamos a la ultima columna y no hay.
+      [(and (= direccion 1) (= fila 3))(check-diagonales board (+ columna 1) 0 1)]  
+      [(and (= direccion 2) (= fila 6))(check-diagonales board (+ columna 1) 3 2)] ; Siguiente columna ascendente
+      
+      ; Casos recursivos. Se ve el caso actual.
+      [(and (= direccion 1)(not (= (check-4-piezas-descendente board columna fila) 0)))(check-4-piezas-descendente board columna fila)]
+      [(and (= direccion 2)(not (= (check-4-piezas-ascendente board columna fila) 0)))(check-4-piezas-ascendente board columna fila)]
+      
+      ; Si el caso actual no tiene vistoria, seguimos con los otros.
+      [(= fila 0)(+ (check-diagonales board columna (+ fila 1) 1)(check-diagonales board columna 3 2))]
+      [else (check-diagonales board columna (+ fila 1) direccion)]
+      )
+    )
+
+  ; Función para ver diagonal descendente.
+  (define (check-4-piezas-descendente board columna fila)
+    (if (or (> (+ columna 3) 6) (> (+ fila 3) 5))  ; Ver cual es el final del tablero.
+        0
+        (if (and (list? (cierto-element (cierto-element board fila) columna)) ; Comprobar que son listas.
+                 (list? (cierto-element (cierto-element board (+ fila 1)) (+ columna 1)))
+                 (list? (cierto-element (cierto-element board (+ fila 2)) (+ columna 2)))
+                 (list? (cierto-element (cierto-element board (+ fila 3)) (+ columna 3))))
+            (if (and (equal? (first-element (cierto-element (cierto-element board fila) columna)) ; Ir comparando las diagonales.
+                             (first-element (cierto-element (cierto-element board (+ fila 1)) (+ columna 1))))
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                             (first-element (cierto-element (cierto-element board (+ fila 2)) (+ columna 2))))
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                             (first-element (cierto-element (cierto-element board (+ fila 3)) (+ columna 3)))))
+                (if (equal? (first-element (cierto-element (cierto-element board fila) columna)) "red")
+                    1  ; Gana rojo.
+                    2 ; Gana amarillo.
+                    )
+                0
+                )
+            0
+            )
+        )
+    )
+  
+  ; Función para ver diagonal ascendente.
+  (define (check-4-piezas-ascendente board columna fila)
+    (if (or (> (+ columna 3) 6) (< (- fila 3) 0))  ; Ver cual es el final del tablero.
+        0
+        (if (and (list? (cierto-element (cierto-element board fila) columna)) 
+                 (list? (cierto-element (cierto-element board (- fila 1)) (+ columna 1)))
+                 (list? (cierto-element (cierto-element board (- fila 2)) (+ columna 2)))
+                 (list? (cierto-element (cierto-element board (- fila 3)) (+ columna 3))))
+            (if (and (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                            (first-element (cierto-element (cierto-element board (- fila 1)) (+ columna 1))))
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                            (first-element (cierto-element (cierto-element board (- fila 2)) (+ columna 2))))
+                     (equal? (first-element (cierto-element (cierto-element board fila) columna))
+                            (first-element (cierto-element (cierto-element board (- fila 3)) (+ columna 3)))))
+                (if (equal? (first-element (cierto-element (cierto-element board fila) columna)) "red")
+                    1  ; Gana rojo.
+                    2 ; Gana amarillo.
+                    )
+                0
+                )
+            0
+            )
+        )
+    )
+
+  ; Verificar diagonales desde columna 0 y fila 0.
+  (check-diagonales board 0 0 1)
+  )
