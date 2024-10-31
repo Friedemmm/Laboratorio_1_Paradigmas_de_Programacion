@@ -1,0 +1,29 @@
+; Descripción: Se finaliza el juego y actualiza las estadisticas de los jugadores según el resultado.
+; Dom: Game (game).
+; Rec: Game.
+; Tipo recursión: No aplica.
+
+(require "TDAplayer_2108221481_SofiaVergara.rkt")
+
+; Función que dependiendo del resultado llama a actualizar las stats.
+(define (game-set-end game)
+  (cond
+    ; Empate.
+    [(game-is-draw? game)
+     (player-update-stats (first-element game) "draw")
+     (player-update-stats (second-element game) "draw")
+     ]
+
+    ; Player1 gana.
+    [(= (board-who-is-winner (third-element game)) 1)
+     (player-update-stats (first-element game) "win")
+     (player-update-stats (second-element game) "loss")
+     ]
+
+    ; Player2 gana.
+    [(= (board-who-is-winner (third-element game)) 2)
+     (player-update-stats (first-element game) "loss")
+     (player-update-stats (second-element game) "win")
+     ]
+    )
+  )
