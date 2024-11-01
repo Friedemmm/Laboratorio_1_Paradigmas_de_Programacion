@@ -4,6 +4,8 @@
 ; Tipo recursión: No aplica.
 
 (require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDApiece_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAboard_2108221481_SofiaVergaraGodoy.rkt")
 
 (define (game player1 player2 board turno)
   (crear-lista player1 player2 board turno)
