@@ -3,7 +3,7 @@
 ; Rec: Retorna una lista de listas con pares que representa el tablero vacío.
 ; Tipo recursión: No aplica
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para crear el tablero Conecta 4.
 (define (board)
