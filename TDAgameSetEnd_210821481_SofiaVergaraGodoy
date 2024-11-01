@@ -3,7 +3,9 @@
 ; Rec: Game.
 ; Tipo recursión: No aplica.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAactualizarStats_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAentregaGanador_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función que dependiendo del resultado llama a actualizar las stats.
 (define (game-set-end game)
