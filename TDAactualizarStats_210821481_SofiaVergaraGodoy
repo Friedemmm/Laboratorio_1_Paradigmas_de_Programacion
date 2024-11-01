@@ -3,7 +3,7 @@
 ; Rec: player.
 ; Tipo recursión: No aplica.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para agregar +1 a la estadistica que termine el juego.
 (define (player-update-stats player result)
