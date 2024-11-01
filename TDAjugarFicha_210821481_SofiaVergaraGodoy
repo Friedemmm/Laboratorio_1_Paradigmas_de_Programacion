@@ -3,7 +3,7 @@
 ; Rec: board.
 ; Tipo recursión: No aplica.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para saber hasta donde llega la pieza en la columna y verificar si puede poner en esa columna.
 (define (board-set-play-piece board columna piece)
