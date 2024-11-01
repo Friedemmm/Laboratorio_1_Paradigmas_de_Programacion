@@ -3,7 +3,8 @@
 ; Rec: boolean (#t si es empate, #f si no).
 ; Tipo recursión: No aplica.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAsePuedeJugar?_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para verificar empate.
 (define (game-is-draw? game) ; Lista Game: player1 player2 board turno. ; Lista Player: id name color wins losses draws remaining-pieces.
