@@ -3,7 +3,7 @@
 ; Rec: Boolean (#t si se puede jugar, #f si no).
 ; Tipo recursión: No aplica
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para revisar si se puede seguir jugando, en este caso busca un espacio vacio, o sea 0.
 (define (board-can-play? board)
