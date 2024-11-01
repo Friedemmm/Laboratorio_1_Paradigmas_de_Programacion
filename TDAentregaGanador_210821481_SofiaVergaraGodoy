@@ -3,6 +3,10 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador).
 ; Tipo recursión: No aplica.
 
+(require "TDAboardWinDiagonal_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAboardWinHorizontal_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAboardWinVertical_2108221481_SofiaVergaraGodoy.rkt")
+
 ; Función que verifica en todas las formas de ganar cual es el ganador.
 (define (board-who-is-winner board)
   (define resultado-en-vertical (board-check-vertical-win board))
