@@ -40,15 +40,12 @@
 (board-check-diagonal-win (game-get-board g11))
 
 (display "Verificación de ganador: ")
-(board-check-winner (game-get-board g11))
+(board-who-is-winner (game-get-board g11))
 
 (display "¿Es empate? ")
 (game-is-draw? g11)
 
 (define ended-game (game-set-end g11))
-
-(define updated-p1 (player-update-stats p1 "win"))
-(define updated-p2 (player-update-stats p2 "loss"))
 
 (display "Historial de movimientos: ")
 (game-history ended-game)
