@@ -3,7 +3,7 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
 ; Tipo recursión: Natural.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para verificar victoria en una columna.
 (define (board-check-vertical-win board)
