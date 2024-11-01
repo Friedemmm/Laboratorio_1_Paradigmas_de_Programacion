@@ -3,7 +3,7 @@
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador diagonal).
 ; Tipo recursión: Cola.
 
-(require "TDAplayer_2108221481_SofiaVergara.rkt")
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para verificar victoria diagonal
 (define (board-check-diagonal-win board)
