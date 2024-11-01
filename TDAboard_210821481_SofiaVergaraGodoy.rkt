@@ -4,6 +4,7 @@
 ; Tipo recursión: No aplica
 
 (require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDAboard_2108221481_SofiaVergaraGodoy.rkt")
 
 ; Función para crear el tablero Conecta 4.
 (define (board)
