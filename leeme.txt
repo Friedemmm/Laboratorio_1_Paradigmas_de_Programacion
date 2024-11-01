@@ -1,0 +1,9 @@
+# Lab1_210821481_SofiaVergaraGodoy
+
+¡IMPORTANTE! Se añadieron las funciones por separado a este repositorio, debe ignorarlas, son por comodidad de orden.
+
+Para utilizar el juego, se debe importar en un nuevo script de Racket el script “main_210821481_SofiaVergaraGodoy.rkt” 
+con la función require. De esta forma, es posible utilizar todas las funciones de los requerimientos funcionales 
+para poder a empezar con el juego Conecta4. 
+Primero debe crear los jugadores, las piezas y el tablero, por ultimo solo quedaria crear la partida. Desde aqui, ya es posible 
+jugar conecta4, teniendo en cuenta los dominios para que funcione correctamente.
