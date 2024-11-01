@@ -39,3 +39,4 @@
     [else (crear-lista id name color wins losses draws remaining-pieces)] ; ("Lista" "Variables...").
     )
   )
+
