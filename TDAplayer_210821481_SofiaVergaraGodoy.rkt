@@ -1,12 +1,33 @@
 #lang racket
 
+(provide (all-defined-out))
+
+;----------------CONSTRUCTOR-PLAYER----------------;
+
 ; Descripción: Crea un nuevo jugador y lo agrega a la lista de jugadores.
 ; Dom: id (int) X name (string) X color (string) X wins (int) X losses (int) X draws (int) X remaining-pieces (int).
 ; Rec: El jugador creado (player).
 ; Tipo recursión: No aplica.
 
-(provide (all-defined-out)
-         
+; Función para crear un jugador con validación de tipos.
+(define (player id name color wins losses draws remaining-pieces) ; (define ("FUNCION" "Variables...")).
+  (cond
+    [(not (integer? id)) (error "id debe ser un número entero")]
+    [(not (string? name)) (error "name debe ser una cadena de caracteres")]
+    [(not (string? color)) (error "color debe ser una cadena de caracteres")]
+    [(not (integer? wins)) (error "wins debe ser un número entero")]
+    [(not (integer? losses)) (error "losses debe ser un número entero")]
+    [(not (integer? draws)) (error "draws debe ser un número entero")]
+    [(not (integer? remaining-pieces)) (error "remaining-pieces debe ser un número entero")]
+    ; Validación para que id 1 sea solo rojo, id 2 sea solo amarillo.
+    [(and (= id 1) (not (string=? color "red")))(error "Si eres jugador 1, debes ser el color 'red'")]
+    [(and (= id 2) (not (string=? color "yellow")))(error "Si eres jugador 2, debes ser el color 'yellow'")]
+    [else (crear-lista id name color wins losses draws remaining-pieces)] ; ("Lista" "Variables...").
+    )
+  )
+
+;----------SELECTORES-PERSONALES--------------;
+
 ; Generar los selectores propios.
 (define crear-lista list) ; Crear lista.
 (define crear-lista-especifica make-list) ; Crear lista especifica de elementos.
@@ -20,23 +41,8 @@
 (define seventh-element seventh) ; Obtiene el ultimo elemento de una lista.
 (define cierto-element list-ref) ; Obtiene el elemento que se le pida.
 (define largo length) ; Obtiene el largo de una lista.
+(define my-cons cons); Lista de pares.
+(define my-car car) ; Primer elemento de una lista.
+(define my-cdr cdr) ; Saca la cola, o segundo elemento de un par.
 
-; Función para crear un jugador con validación de tipos.
-(define (player id name color wins losses draws remaining-pieces) ; (define ("FUNCION" "Variables...")).
-  (cond
-    [(not (integer? id)) (error "id debe ser un número entero")]
-    [(not (string? name)) (error "name debe ser una cadena de caracteres")]
-    [(not (string? color)) (error "color debe ser una cadena de caracteres")]
-    [(not (integer? wins)) (error "wins debe ser un número entero")]
-    [(not (integer? losses)) (error "losses debe ser un número entero")]
-    [(not (integer? draws)) (error "draws debe ser un número entero")]
-    [(not (integer? remaining-pieces)) (error "remaining-pieces debe ser un número entero")]
-    ; Validación del color según el id
-    [(and (= id 1) (not (string=? color "red")))
-     (error "Si eres jugador 1, debes ser el color 'red'")]
-    [(and (= id 2) (not (string=? color "yellow")))
-     (error "Si eres jugador 2, debes ser el color 'yellow'")]
-    [else (crear-lista id name color wins losses draws remaining-pieces)] ; ("Lista" "Variables...").
-    )
-  )
-
+;-----------------------------------------;
