@@ -6,7 +6,6 @@
 
 (define empty-board (board))
 
-
 (define g0 (game p1 p2 empty-board 1))
 
 (define g1 (game-player-set-move g0 p1 0))
@@ -39,15 +38,12 @@
 (board-check-diagonal-win (game-get-board g10))
 
 (display "Verificación de ganador: ")
-(board-check-winner (game-get-board g10))
+(board-who-is-winner (game-get-board g10))
 
 (display "¿Es empate? ")
 (game-is-draw? g10)
 
-(define ended-game (game-set-end g11))
-
-(define updated-p1 (player-update-stats p1 "loss"))
-(define updated-p2 (player-update-stats p2 "win"))
+(define ended-game (game-set-end g10))
 
 (display "Historial de movimientos: ")
 (game-history ended-game)
