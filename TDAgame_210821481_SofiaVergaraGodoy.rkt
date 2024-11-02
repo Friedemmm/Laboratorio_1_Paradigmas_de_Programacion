@@ -183,7 +183,7 @@
 (define (find-mov board initial-board fila columna acc)
   (cond
     [(>= fila 6) acc] ; Terminamos de recorrer.
-    [(>= col 7) (find-mov board initial-board (+ fila 1) 0 acc)] ; Siguiente fila.
+    [(>= columna 7) (find-mov board initial-board (+ fila 1) 0 acc)] ; Siguiente fila.
     [(not (equal? (color-posicion board fila columna)(color-posicion initial-board fila columna))) 
      (find-mov board initial-board fila (+ columna 1)(my-cons (crear-lista fila columna (color-posicion board fila columna)) acc))
      ]
