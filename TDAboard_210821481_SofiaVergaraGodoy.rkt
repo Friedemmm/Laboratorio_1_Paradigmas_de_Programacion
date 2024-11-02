@@ -1,10 +1,18 @@
+#lang racket
+
+(provide (all-defined-out))
+
+(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
+(require "TDApiece_2108221481_SofiaVergaraGodoy.rkt")
+
+;----------------CONSTRUCTOR-BOARD----------------;
+
 ; Descripción: Crea un tablero de 7 columnas y 6 filas lleno de ceros, donde se hacen 6 listas con 7 elementos.
 ; Dom: No recibe parámetros de entrada.
 ; Rec: Retorna una lista de listas con pares que representa el tablero vacío.
-; Tipo recursión: No aplica
+; Tipo recursión: No aplica.
 
-(require "TDAplayer_2108221481_SofiaVergaraGodoy.rkt")
-(require "TDAboard_2108221481_SofiaVergaraGodoy.rkt")
+; // (define empty-board (board))
 
 ; Función para crear el tablero Conecta 4.
 (define (board)
@@ -23,8 +31,211 @@
                )
   )
 
+;----------------MODIFICADORES----------------;
 
---------Funciones auxiliares------
+; Descripción: Verifica que fila esta vacia en la columna seleccionada.
+; Dom: board (board) X column (int) X piece (piece). 
+; Rec: board.
+; Tipo recursión: No aplica.
+
+; Función para saber hasta donde llega la pieza en la columna y verificar si puede poner en esa columna.
+(define (board-set-play-piece board columna piece)
+  (if (equal? (cierto-element (sixth-element board) columna) 0) ; Si sexta fila tiene 0 en esa columna.
+      (crear-lista (first-element board) ; Se deja igual la fila 1.
+                   (second-element board) ; Se deja igual la fila 2.
+                   (third-element board) ; Se deja igual la fila 3.
+                   (fourth-element board) ; Se deja igual la fila 4.
+                   (fifth-element board) ; Se deja igual la fila 5.
+                   ; Crea nueva lista para fila 6 reemplazando el 0 con piece en la columna.
+                   (crear-lista (if (= columna 0)
+                                    piece (cierto-element (sixth-element board) 0)
+                                    )
+                                (if (= columna 1)
+                                    piece (cierto-element (sixth-element board) 1)
+                                    )
+                                (if (= columna 2)
+                                    piece (cierto-element (sixth-element board) 2)
+                                    )
+                                (if (= columna 3)
+                                    piece (cierto-element (sixth-element board) 3)
+                                    )
+                                (if (= columna 4)
+                                    piece (cierto-element (sixth-element board) 4)
+                                    )
+                                (if (= columna 5)
+                                    piece (cierto-element (sixth-element board) 5)
+                                    )
+                                (if (= columna 6)
+                                    piece (cierto-element (sixth-element board) 6)
+                                    )
+                                )
+                   )
+      
+      (if (equal? (cierto-element (fifth-element board) columna) 0) ; Si quinta fila tiene 0 en esa columna.
+          (crear-lista (first-element board) ; Se deja igual la fila 1.
+                       (second-element board) ; Se deja igual la fila 2.
+                       (third-element board) ; Se deja igual la fila 3.
+                       (fourth-element board) ; Se deja igual la fila 4.
+                       ; Crea nueva lista para fila 5 reemplazando el 0 con piece en la columna.
+                       (crear-lista (if (= columna 0)
+                                        piece (cierto-element (fifth-element board) 0)
+                                        )
+                                    (if (= columna 1)
+                                        piece (cierto-element (fifth-element board) 1)
+                                        )
+                                    (if (= columna 2)
+                                        piece (cierto-element (fifth-element board) 2)
+                                        )
+                                    (if (= columna 3)
+                                        piece (cierto-element (fifth-element board) 3)
+                                        )
+                                    (if (= columna 4)
+                                        piece (cierto-element (fifth-element board) 4)
+                                        )
+                                    (if (= columna 5)
+                                        piece (cierto-element (fifth-element board) 5)
+                                        )
+                                    (if (= columna 6)
+                                        piece (cierto-element (fifth-element board) 6)
+                                        )
+                                    )
+                       (sixth-element board) ; Se deja igual la fila 6.
+                       )
+          
+          (if (equal? (cierto-element (fourth-element board) columna) 0) ; Si cuarta fila tiene 0 en esa columna.
+              (crear-lista (first-element board)   ; Se deja igual la fila 1.
+                           (second-element board)   ; Se deja igual la fila 2.
+                           (third-element board)    ; Se deja igual la fila 3.
+                           ; Crea nueva lista para fila 4 reemplazando el 0 con piece en la columna.
+                           (crear-lista (if (= columna 0) ; Si esta en esa columna se crea otra lista con el piece en ese elemento.
+                                            piece (cierto-element (fourth-element board) 0)
+                                            )
+                                        (if (= columna 1)
+                                            piece (cierto-element (fourth-element board) 1)
+                                            )
+                                        (if (= columna 2)
+                                            piece (cierto-element (fourth-element board) 2)
+                                            )
+                                        (if (= columna 3)
+                                            piece (cierto-element (fourth-element board) 3)
+                                            )
+                                        (if (= columna 4)
+                                            piece (cierto-element (fourth-element board) 4)
+                                            )
+                                        (if (= columna 5)
+                                            piece (cierto-element (fourth-element board) 5)
+                                            )
+                                        (if (= columna 6)
+                                            piece (cierto-element (fourth-element board) 6)
+                                            )
+                                        )
+                           (fifth-element board)    ; Se deja igual la fila 5
+                           (sixth-element board))   ; Se deja igual la fila 6
+
+              (if (equal? (cierto-element (third-element board) columna) 0) ; Si tercera fila tiene 0 en esa columna.
+                  (crear-lista (first-element board)  ; Se deja igual la fila 1.
+                               (second-element board)  ; Se deja igual la fila 2.
+                               ; Crea nueva lista para fila 3 reemplazando el 0 con piece en la columna.
+                               (crear-lista (if (= columna 0)
+                                                piece (cierto-element (third-element board) 0)
+                                                )
+                                            (if (= columna 1)
+                                                piece (cierto-element (third-element board) 1)
+                                                )
+                                            (if (= columna 2)
+                                                piece (cierto-element (third-element board) 2)
+                                                )
+                                            (if (= columna 3)
+                                                piece (cierto-element (third-element board) 3)
+                                                )
+                                            (if (= columna 4)
+                                                piece (cierto-element (third-element board) 4)
+                                                )
+                                            (if (= columna 5)
+                                                piece (cierto-element (third-element board) 5)
+                                                )
+                                            (if (= columna 6)
+                                                piece (cierto-element (third-element board) 6)
+                                                )
+                                            )
+                               (fourth-element board)  ; Se deja igual la fila 4.
+                               (fifth-element board)  ; Se deja igual la fila 5.
+                               (sixth-element board)  ; Se deja igual la fila 6.
+                               )
+                        
+                  (if (equal? (cierto-element (second-element board) columna) 0) ; Si segunda fila tiene 0 en esa columna. 
+                      (crear-lista (first-element board)  ; Se deja igual la fila 1.
+                                   ; Crea nueva lista para fila 2 reemplazando el 0 con piece en la columna.
+                                   (crear-lista (if (= columna 0)
+                                                    piece (cierto-element (second-element board) 0)
+                                                    )
+                                                (if (= columna 1)
+                                                    piece (cierto-element (second-element board) 1)
+                                                    )
+                                                (if (= columna 2)
+                                                    piece (cierto-element (second-element board) 2)
+                                                    )
+                                                (if (= columna 3)
+                                                    piece (cierto-element (second-element board) 3)
+                                                    )
+                                                (if (= columna 4)
+                                                    piece (cierto-element (second-element board) 4)
+                                                    )
+                                                (if (= columna 5)
+                                                    piece (cierto-element (second-element board) 5)
+                                                    )
+                                                (if (= columna 6)
+                                                    piece (cierto-element (second-element board) 6)
+                                                    )
+                                                )
+                                   (third-element board)  ; Se deja igual la fila 3.
+                                   (fourth-element board)  ; Se deja igual la fila 4.
+                                   (fifth-element board)  ; Se deja igual la fila 5.
+                                   (sixth-element board)  ; Se deja igual la fila 6.
+                                   )
+                            
+                      (if (equal? (cierto-element (first-element board) columna) 0) ; Si primera fila tiene 0 en esa columna.
+                          ; Crea nueva lista para fila 1 reemplazando el 0 con piece en la columna.
+                          (crear-lista (crear-lista (if (= columna 0)
+                                                        piece (cierto-element (first-element board) 0)
+                                                        )
+                                                    (if (= columna 1)
+                                                        piece (cierto-element (first-element board) 1)
+                                                        )
+                                                    (if (= columna 2)
+                                                        piece (cierto-element (first-element board) 2)
+                                                        )
+                                                    (if (= columna 3)
+                                                        piece (cierto-element (first-element board) 3)
+                                                        )
+                                                    (if (= columna 4)
+                                                        piece (cierto-element (first-element board) 4)
+                                                        )
+                                                    (if (= columna 5)
+                                                        piece (cierto-element (first-element board) 5)
+                                                        )
+                                                    (if (= columna 6)
+                                                        piece (cierto-element (first-element board) 6)
+                                                        )
+                                                    )
+                                       (second-element board)  ; Se deja igual la fila 2.
+                                       (third-element board)  ; Se deja igual la fila 3.
+                                       (fourth-element board)  ; Se deja igual la fila 4.
+                                       (fifth-element board)  ; Se deja igual la fila 5.
+                                       (sixth-element board)  ; Se deja igual la fila 6.
+                                       )
+
+                          (error "No hay espacio en la columna")
+                          
+                          )
+                      )
+                  )
+              )
+          )
+      )
+  )
+
+;----------------OTROS----------------;
 
 ; Descripción: Verifica si hay al menos una celda vacía en el tablero.
 ; Dom: Board (board).
@@ -38,6 +249,8 @@
       #f ; Si no encuentra un 0.
       )
   )
+
+;-----------------------------------------;
 
 ; Descripción: Verificar si en una columna hay 4 piezas juntas del mismo color para ganar.
 ; Dom: Board (board).
@@ -96,9 +309,12 @@
   (check-columna board 0)
   )
 
+
+;-----------------------------------------;
+
 ; Descripción: Verificar si en una fila hay 4 piezas juntas del mismo color para ganar.
 ; Dom: Board (board).
-; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador vertical).
+; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador horizontal).
 ; Tipo recursión: Natural.
 
 ; Función para revisar la victoria en una fila.
@@ -152,6 +368,8 @@
   ; Iniciamos chequeando desde la fila 0.
   (check-fila board 0)
   )
+ 
+;-----------------------------------------;
 
 ; Descripción: Verificar si en una diagonal hay 4 piezas juntas del mismo color para ganar.
 ; Dom: Board (board).
@@ -186,7 +404,7 @@
                  (list? (cierto-element (cierto-element board (+ fila 1)) (+ columna 1)))
                  (list? (cierto-element (cierto-element board (+ fila 2)) (+ columna 2)))
                  (list? (cierto-element (cierto-element board (+ fila 3)) (+ columna 3))))
-            (if (and (equal? (first-element (cierto-element (cierto-element board fila) columna)) ; Ir comparando las diagonales.
+            (if (and (equal? (first-element (cierto-element (cierto-element board fila) columna))
                              (first-element (cierto-element (cierto-element board (+ fila 1)) (+ columna 1))))
                      (equal? (first-element (cierto-element (cierto-element board fila) columna))
                              (first-element (cierto-element (cierto-element board (+ fila 2)) (+ columna 2))))
@@ -232,6 +450,8 @@
   (check-diagonales board 0 0 1)
   )
 
+;-----------------------------------------;
+
 ; Descripción: Verifica el estado del tablero y entrega el posible ganador.
 ; Dom: Board (board).
 ; Rec: int (1 si gana jugador 1, 2 si gana jugador 2, 0 si no hay ganador).
@@ -249,5 +469,12 @@
     [(> resultado-en-diagonal 0) resultado-en-diagonal]     ; Retorna el ganador diagonal.
     [else 0] ; No hay ganador.
     )
-  ) 
+  )  
+
+;-----------------------------------------;
+
+
+
+
+
 
